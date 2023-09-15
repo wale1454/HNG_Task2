@@ -39,7 +39,7 @@ def get_person(user_id):
     # Query the database to retrieve a person with the given ID
     conn = connect_to_db()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM my_table WHERE id = %s", (user_id,))
+    cursor.execute("SELECT * FROM my_table2 WHERE id = %s", (user_id,))
 
     # Fetch the result
     row = cursor.fetchone()
@@ -73,7 +73,7 @@ def create_person():
     # Store name and value in the DB
     conn = connect_to_db()
     cursor = conn.cursor()
-    cursor.execute(f"INSERT INTO my_table (name, value) VALUES('{person_name}', '{person_value}') ; ")
+    cursor.execute(f"INSERT INTO my_table2 (name, value) VALUES('{person_name}', '{person_value}') ; ")
 
     conn.commit() # Used after Insert to persist the insert query.
     conn.close()
@@ -98,7 +98,7 @@ def update_person(user_id):
     # cursor.execute("SELECT * FROM my_table WHERE id = %s", (user_id,))
 
     cursor.execute(
-                "UPDATE my_table SET name = %s, value = %s WHERE id = %s",
+                "UPDATE my_table2 SET name = %s, value = %s WHERE id = %s",
                 (updated_name, updated_value, user_id)
             )
 
@@ -115,7 +115,7 @@ def delete_person(user_id):
         conn = connect_to_db()
         cursor = conn.cursor()
 
-        cursor.execute("DELETE FROM my_table WHERE id = %s", (user_id,))
+        cursor.execute("DELETE FROM my_table2 WHERE id = %s", (user_id,))
 
         conn.commit()  # Used to persist the delete query.
         conn.close()
