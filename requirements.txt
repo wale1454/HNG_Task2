@@ -1,0 +1,4 @@
+psycopg                                        
+psycopg2-binary      
+Flask
+Gunicorn
