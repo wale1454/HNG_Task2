@@ -79,7 +79,7 @@ def create_person():
     # conn.close()
     
     
-    cursor.execute(f"SELECT id FROM my_table WHERE name='{person_name}'; ")
+    cursor.execute(f"SELECT id FROM my_table2 WHERE name='{person_name}'; ")
 
     # Fetch the result
     row = cursor.fetchone()
