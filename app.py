@@ -64,7 +64,7 @@ def create_person():
 
     # # Validate the input data
     if 'name' not in data or 'value' not in data:
-        return jsonify({'message': 'name, and value are required i.e. name: John Doe and value: HNG CEO '}), 400
+        return jsonify({'message': 'name, and value are required i.e. name: Jamie and value: CTO '}), 400
 
     # Create a new Person object
     person_name  = data['name']
@@ -76,11 +76,24 @@ def create_person():
     cursor.execute(f"INSERT INTO my_table2 (name, value) VALUES('{person_name}', '{person_value}') ; ")
 
     conn.commit() # Used after Insert to persist the insert query.
+    # conn.close()
+    
+    
+    cursor.execute(f"SELECT id FROM my_table WHERE name='{person_name}'; ")
+
+    # Fetch the result
+    row = cursor.fetchone()
     conn.close()
+    if row:
+        # Convert the result to a dictionary for JSON serialization
+        result2 = {
+            'id': row[0]
+        } 
+
     print(data)
 
     return jsonify({'message': 'Person created successfully', 
-                    "Data":data})
+                    "Data":data , "id":result2 })
 
 
 # Update
